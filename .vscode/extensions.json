@@ -1,0 +1,16 @@
+{
+  "recommendations": [
+    "biomejs.biome",
+    "EditorConfig.EditorConfig",
+    "esbenp.prettier-vscode",
+    "GitHub.copilot",
+    "jock.svg",
+    "mervin.markdown-formatter",
+    "ms-ceintl.vscode-language-pack-ja",
+    "redhat.vscode-xml",
+    "redhat.vscode-yaml",
+    "saoudrizwan.claude-dev",
+    "streetsidesoftware.code-spell-checker",
+    "vscode-icons-team.vscode-icons"
+  ]
+}
