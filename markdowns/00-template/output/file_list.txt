@@ -1,0 +1,2 @@
+markdowns/00-template/1_sample.md
+markdowns/00-template/2_sample.md
