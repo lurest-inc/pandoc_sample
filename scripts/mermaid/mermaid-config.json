@@ -1,0 +1,10 @@
+{
+  "theme": "default",
+  "themeVariables": {
+    "fontFamily": "'Noto Sans CJK JP', sans-serif",
+    "fontSize": "16px"
+  },
+  "flowchart": {
+    "htmlLabels": false
+  }
+}

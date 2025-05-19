@@ -1,0 +1,33 @@
+from: markdown+emoji
+to: latex
+standalone: true
+eol: lf
+wrap: auto
+columns: 72
+toc: true
+toc-depth: 2
+highlight-style: pygments
+number-sections: false
+listings: true
+reference-links: true
+citeproc: true
+filters:
+  - scripts/lua-filter/dot.lua
+  - scripts/lua-filter/graphics.lua
+  - scripts/lua-filter/mermaid-to-image.lua
+  - scripts/lua-filter/table.lua
+variables:
+  lang: ja
+  microtypeoptions: expansion=false
+  geometry: top=1in, bottom=1in, left=0.5in, right=0.5in
+  toc-own-page: true
+metadata:
+  listings: true
+  geometry: a4paper
+  figureTitle: "図"
+  tableTitle: "表"
+  listingTitle: "コード"
+  figPrefix: "図"
+  eqnPrefix: "式"
+  tblPrefix: "表"
+  lstPrefix: "コード"

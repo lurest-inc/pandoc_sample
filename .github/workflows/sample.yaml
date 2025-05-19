@@ -1,0 +1,68 @@
+name: sample
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate-pdf:
+    name: Generate and Update
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+        with:
+          fetch-depth: 0
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          wget -O pandoc.deb $(wget -qO- https://api.github.com/repos/jgm/pandoc/releases/latest | grep "browser_download_url.*amd64.deb" | cut -d '"' -f 4)
+          sudo dpkg -i pandoc.deb
+          rm pandoc.deb
+          sudo apt-get install -y graphviz texlive texlive-xetex texlive-fonts-recommended texlive-latex-extra fonts-noto-cjk
+          wget https://github.com/lierdakil/pandoc-crossref/releases/download/v0.3.18.2/pandoc-crossref-Linux-X64.tar.xz && \
+          tar -Jxvf pandoc-crossref-Linux-X64.tar.xz && \
+          mkdir -p ~/.local/share/pandoc/filter && \
+          cp pandoc-crossref /usr/local/bin
+
+      - name: Install Node.js packages
+        run: npm ci
+
+      - name: Set Puppeteer Executable Path
+        run: |
+          echo PUPPETEER_EXECUTABLE_PATH=$(node -e 'console.log(require("puppeteer").executablePath())') >> $GITHUB_ENV
+
+      - name: Generate file list
+        run: |
+          find markdowns/00-template/ -name "*.md" | sort > markdowns/00-template/output/file_list.txt
+
+      # MarkdownファイルをPDFに変換
+      - name: Generate PDF
+        run: |
+          pandoc \
+            -o markdowns/00-template/output/document.pdf $(cat markdowns/00-template/output/file_list.txt) \
+            --defaults=scripts/pandoc-defaults.yaml \
+            --pdf-engine=xelatex \
+            --resource-path=markdowns/00-template/assets:scripts/mermaid \
+            -A markdowns/00-template/9_back-cover.tex \
+            -B markdowns/00-template/0_front-cover.tex \
+            -F pandoc-crossref \
+            -V mainfont="Noto Sans CJK JP" \
+            2>&1 | tee pandoc.log || (echo "Pandoc failed. Log:" && cat pandoc.log)
+
+      # PDFをコミット
+      - name: Commit and Push PDF
+        run: |
+          git config --local user.name "github-actions"
+          git config --local user.email "github-actions@github.com"
+          git add markdowns/00-template/output/file_list.txt
+          git add markdowns/00-template/output/document.pdf
+          git diff --cached --quiet || git commit -m "Add updated PDF document"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

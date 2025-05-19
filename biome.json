@@ -1,0 +1,84 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "organizeImports": {
+    "enabled": true
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "lineWidth": 100
+  },
+  "javascript": {
+    "formatter": {
+      "arrowParentheses": "always",
+      "jsxQuoteStyle": "single",
+      "indentStyle": "space",
+      "lineWidth": 100,
+      "quoteProperties": "asNeeded",
+      "quoteStyle": "single",
+      "semicolons": "asNeeded",
+      "trailingCommas": "all"
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "a11y": {
+        "noRedundantAlt": "off"
+      },
+      "complexity": {
+        "noExcessiveCognitiveComplexity": "off",
+        "noForEach": "off",
+        "noVoid": "off",
+        "useSimplifiedLogicExpression": "off"
+      },
+      "correctness": {
+        "noNewSymbol": "error",
+        "noUndeclaredVariables": "off",
+        "noUnusedImports": "off",
+        "noUnusedPrivateClassMembers": "error",
+        "noUnusedVariables": "off",
+        "useExhaustiveDependencies": "info",
+        "useJsxKeyInIterable": "off",
+        "useHookAtTopLevel": "off"
+      },
+      "performance": {
+        "noBarrelFile": "off",
+        "noReExportAll": "off"
+      },
+      "security": {},
+      "style": {
+        "noDefaultExport": "off",
+        "noImplicitBoolean": "off",
+        "noNamespace": "error",
+        "noNamespaceImport": "off",
+        "noNegationElse": "off",
+        "noParameterProperties": "off",
+        "noRestrictedGlobals": "off",
+        "noShoutyConstants": "error",
+        "useBlockStatements": "error",
+        "useCollapsedElseIf": "off",
+        "useConsistentArrayType": "error",
+        "useFilenamingConvention": "off",
+        "useForOf": "off",
+        "useFragmentSyntax": "error",
+        "useNamingConvention": "off",
+        "useNodeAssertStrict": "off",
+        "useShorthandArrayType": "error",
+        "useShorthandAssign": "error",
+        "useSingleCaseStatement": "error"
+      },
+      "suspicious": {
+        "noConfusingVoidType": "off",
+        "noConsoleLog": "error",
+        "noEmptyBlockStatements": "off",
+        "noExplicitAny": "off",
+        "noRedeclare": "off",
+        "noShadowRestrictedNames": "off",
+        "noSkippedTests": "off",
+        "useAwait": "off"
+      }
+    }
+  }
+}

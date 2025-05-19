@@ -1,0 +1,12 @@
+{
+  "name": "pandoc_sample",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {},
+  "dependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@mermaid-js/mermaid-cli": "10.9.1",
+    "cspell": "9.0.1",
+    "puppeteer": "19.11.1"
+  }
+}
